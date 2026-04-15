@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momentos Divertidos | BTPI 2026</title>
+<style>
+
+/* reinicia todos los margenes y paddings a cero */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* estilos generales del cuerpo con fondo gradiente oscuro */
+body{font-family:'Segoe UI',Roboto,'Helvetica Neue',sans-serif;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 100%);background-attachment:fixed;color:#1a1a1a;position:relative;}
+
+/* contenedor principal que centra el contenido */
+.contenedor{width:90%;max-width:1300px;margin:0 auto;padding:20px 0;}
+
+/* barra superior negra con informacion de contacto */
+.barra-superior{background:#000000;color:white;padding:8px 0;font-size:14px;text-align:center;border-bottom:3px solid #cc0000;}
+
+/* cada elemento de texto dentro de la barra superior */
+.texto-barra{margin:0 15px;transition:0.3s;display:inline-block;}
+
+.texto-barra:hover{color:#0099ff;transform:scale(1.05);}
+
+/* encabezado fijo que se queda arriba al hacer scroll */
+.encabezado{background:white;box-shadow:0 4px 12px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;border-bottom:2px solid #cc0000;}
+
+/* contenedor flexible para el encabezado */
+.flex-encabezado{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+
+/* espacio para el logo de la carrera */
+.logo-carrera{display:flex;align-items:center;gap:15px;}
+
+/* contenedor del logo con borde animado */
+.imagen-logo{width:60px;height:60px;background:linear-gradient(135deg,#0099ff,#0066cc);border-radius:50%;display:inline-block;text-align:center;line-height:60px;font-size:12px;color:white;border:2px solid #cc0000;overflow:hidden;transition:0.3s;}
+
+.imagen-logo:hover{transform:rotate(5deg) scale(1.05);border-color:#0099ff;}
+
+/* imagen dentro del logo */
+.imagen-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+
+/* titulo del instituto */
+.texto-instituto h1{color:#cc0000;font-size:1.8rem;text-shadow:2px 2px 4px rgba(0,0,0,0.1);}
+
+/* parte azul del titulo */
+.texto-instituto h1 span{color:#0099ff;font-weight:normal;}
+
+/* texto secundario del instituto */
+.texto-instituto p{color:#333;font-size:0.85rem;letter-spacing:1px;}
+
+/* menu de navegacion horizontal */
+.menu{list-style:none;display:flex;gap:1.8rem;flex-wrap:wrap;}
+
+/* estilos de cada enlace del menu */
+.enlace-menu{text-decoration:none;color:#000000;font-weight:bold;padding:8px 0;transition:0.3s;border-bottom:3px solid transparent;}
+
+/* efecto hover para los enlaces del menu */
+.enlace-menu:hover{border-bottom-color:#cc0000;color:#cc0000;transform:translateY(-2px);}
+
+/* padding general para las secciones */
+.seccion{padding:70px 0;}
+
+/* titulo de cada seccion con linea gradiente abajo */
+.titulo-seccion{text-align:center;font-size:2.2rem;margin-bottom:40px;position:relative;display:inline-block;width:100%;color:#ffffff;text-shadow:2px 2px 4px rgba(0,0,0,0.5);}
+
+/* linea gradiente decorativa debajo del titulo */
+.titulo-seccion:after{content:"";display:block;width:80px;height:4px;background:linear-gradient(90deg,#cc0000,#0099ff);margin:12px auto 0;border-radius:2px;}
+
+/* descripcion inicial */
+.descripcion-inicial{text-align:center;color:white;font-size:1.2rem;margin-bottom:50px;padding:20px;background:rgba(0,0,0,0.5);border-radius:20px;}
+
+/* grilla de momentos */
+.grilla-momentos{display:flex;flex-direction:column;gap:50px;}
+
+/* cada momento individual */
+.momento{background:rgba(255,255,255,0.95);border-radius:30px;padding:30px;transition:0.3s;border-left:8px solid #cc0000;border-right:1px solid #eee;}
+
+.momento:hover{transform:translateY(-5px);box-shadow:0 25px 50px rgba(0,0,0,0.3);}
+
+/* titulo del momento */
+.titulo-momento{color:#cc0000;font-size:1.8rem;margin-bottom:15px;border-bottom:2px solid #0099ff;display:inline-block;padding-bottom:5px;}
+
+/* espacio para explicacion */
+.explicacion{font-size:1.1rem;line-height:1.6;color:#333;margin-bottom:25px;padding:15px;background:#f8f9fc;border-radius:15px;min-height:100px;}
+
+/* espacio para imagenes */
+.espacio-imagenes{width:100%;min-height:250px;background:#e0e0e0;border-radius:20px;border:2px dashed #cc0000;display:flex;align-items:center;justify-content:center;color:#666;font-size:1rem;text-align:center;margin-top:15px;}
+
+/* boton volver */
+.boton-volver{display:inline-block;background:linear-gradient(135deg,#cc0000,#990000);color:white;padding:12px 28px;text-decoration:none;border-radius:50px;font-weight:bold;transition:0.3s;margin-top:30px;box-shadow:0 5px 15px rgba(204,0,0,0.3);}
+
+.boton-volver:hover{background:linear-gradient(135deg,#ff0000,#cc0000);transform:scale(1.05);box-shadow:0 8px 25px rgba(204,0,0,0.4);}
+
+/* pie de pagina */
+.pie-pagina{background:#1a1a1a;color:#cccccc;text-align:center;padding:40px 0;margin-top:40px;border-top:3px solid #cc0000;}
+
+/* parrafos dentro del pie de pagina */
+.pie-pagina p{margin:5px 0;transition:0.3s;}
+
+.pie-pagina p:hover{color:#0099ff;}
+
+/* estilos para pantallas pequeñas */
+@media (max-width:768px){
+.flex-encabezado{flex-direction:column;text-align:center;gap:15px;}
+.menu{justify-content:center;}
+.titulo-seccion{font-size:1.8rem;}
+.momento{padding:20px;}
+.titulo-momento{font-size:1.5rem;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="barra-superior">
+<div class="contenedor">
+<span class="texto-barra">BTPI 2026</span>
+<span class="texto-barra">Momentos Divertidos</span>
+<span class="texto-barra">Promocion 2026 - 24 Estudiantes</span>
+<span class="texto-barra">Instituto Roberto Micheletti Bain</span>
+</div>
+</div>
+
+<div class="encabezado">
+<div class="contenedor flex-encabezado">
+<div class="logo-carrera">
+<div class="imagen-logo">
+<img src="Fotos de 12/Logo.jpg" alt="Logo BTPI">
+</div>
+<div class="texto-instituto">
+<h1>BTPI <span>2026</span></h1>
+<p>Bachillerato Tecnico Profesional en Informatica</p>
+<p>Instituto Roberto Micheletti Bain</p>
+</div>
+</div>
+<nav>
+<ul class="menu">
+<li><a href="index.html" class="enlace-menu">Inicio</a></li>
+<li><a href="perfil.html" class="enlace-menu">Perfil</a></li>
+<li><a href="contacto.html" class="enlace-menu">Contacto</a></li>
+<li><a href="divertido.html" class="enlace-menu">Algunas fotos de mejores momentos</a></li>
+<li><a href="Cumpleaños.html" class="enlace-menu">Cumpleaños</a></li><br>
+</ul>
+</nav>
+</div>
+</div>
+
+<main>
+
+<div class="seccion">
+<div class="contenedor">
+
+<h1 class="titulo-seccion">Nuestros Mejores Momentos</h1>
+
+<div class="descripcion-inicial">
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Aquí guardamos los recuerdos mas divertidos de nuestra promoción.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+</div>
+
+<div class="grilla-momentos">
+
+<!-- MOMENTO 1 -->
+<div class="momento">
+<h2 class="titulo-momento">No hay contexto</h2>
+<div class="espacio-imagenes"> 
+	<div style="display:flex; gap:15px; flex-wrap:wrap;">
+<img src="Fotos de 12/foto1.jpg" style="width:200px; height:150px; object-fit:cover; border-radius:15px;">
+<img src="Fotos de 12/foto2.jpg" style="width:200px; height:150px; object-fit:cover; border-radius:15px;">
+<img src="Fotos de 12/foto3.jpg" style="width:200px; height:150px; object-fit:cover; border-radius:15px;">
+<img src="Fotos de 12/foto4.jpg" style="width:200px; height:150px; object-fit:cover; border-radius:15px;">
+<img src="Fotos de 12/foto5.jpg" style="width:200px; height:150px; object-fit:cover; border-radius:15px;">
+<img src="Fotos de 12/foto6.jpg" style="width:200px; height:150px; object-fit:cover; border-radius:15px;">
+<video controls width="20%" style="border-radius:10px;">
+<source src="videos de 12/Video2.mp4" type="video/mp4">
+</video>
+<video controls width="20%" style="border-radius:10px;">
+<source src="videos de 12/Video1.mp4" type="video/mp4">
+</video>
+</div></div>
+</div>
+</div>
+
+<div style="text-align:center; margin-top:50px;">
+<a href="index.html" class="boton-volver">Volver al Inicio</a>
+</div>
+
+</div>
+</div>
+
+</main>
+
+<div class="pie-pagina">
+<div class="contenedor">
+<p>2026 BTPI - Instituto Roberto Micheletti Bain</p>
+<p>Bachillerato Tecnico Profesional en Informatica | Promocion 2026</p>
+<p>Los mejores momentos de la mejor generacion</p>
+</div>
+</div>
+
+</body>
+</html>

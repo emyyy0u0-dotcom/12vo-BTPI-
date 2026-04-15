@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil | BTPI 2026 | Instituto Roberto Micheletti Bain</title>
+<style>
+
+/* reinicia todos los margenes y paddings a cero */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* estilos generales del cuerpo de la pagina con gradiente de fondo */
+body{font-family:'Segoe UI',Roboto,'Helvetica Neue',sans-serif;background:linear-gradient(135deg,#f0f4f8 0%,#e0e8f0 100%);color:#1a1a1a;}
+
+/* contenedor principal que centra el contenido */
+.contenedor{width:90%;max-width:1300px;margin:0 auto;padding:20px 0;}
+
+/* barra superior negra con informacion de contacto */
+.barra-superior{background:#000000;color:white;padding:8px 0;font-size:14px;text-align:center;border-bottom:3px solid #cc0000;}
+
+/* cada elemento de texto dentro de la barra superior */
+.texto-barra{margin:0 15px;transition:0.3s;display:inline-block;}
+
+.texto-barra:hover{color:#0099ff;transform:scale(1.05);}
+
+/* encabezado fijo que se queda arriba al hacer scroll */
+.encabezado{background:white;box-shadow:0 4px 12px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;border-bottom:2px solid #cc0000;}
+
+/* contenedor flexible para el encabezado */
+.flex-encabezado{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+
+/* espacio para el logo de la carrera */
+.logo-carrera{display:flex;align-items:center;gap:15px;}
+
+/* contenedor del logo con borde animado */
+.imagen-logo{width:60px;height:60px;background:linear-gradient(135deg,#0099ff,#0066cc);border-radius:50%;display:inline-block;text-align:center;line-height:60px;font-size:12px;color:white;border:2px solid #cc0000;overflow:hidden;transition:0.3s;}
+
+.imagen-logo:hover{transform:rotate(5deg) scale(1.05);border-color:#0099ff;}
+
+/* imagen dentro del logo */
+.imagen-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+
+/* titulo del instituto */
+.texto-instituto h1{color:#cc0000;font-size:1.8rem;text-shadow:2px 2px 4px rgba(0,0,0,0.1);}
+
+/* parte azul del titulo */
+.texto-instituto h1 span{color:#0099ff;font-weight:normal;}
+
+/* texto secundario del instituto */
+.texto-instituto p{color:#333;font-size:0.85rem;letter-spacing:1px;}
+
+/* menu de navegacion horizontal */
+.menu{list-style:none;display:flex;gap:1.8rem;flex-wrap:wrap;}
+
+/* estilos de cada enlace del menu */
+.enlace-menu{text-decoration:none;color:#000000;font-weight:bold;padding:8px 0;transition:0.3s;border-bottom:3px solid transparent;}
+
+/* efecto hover para los enlaces del menu */
+.enlace-menu:hover{border-bottom-color:#cc0000;color:#cc0000;transform:translateY(-2px);}
+
+/* titulo de cada seccion con linea roja abajo y efecto */
+.titulo-seccion{text-align:center;font-size:2.2rem;margin-bottom:40px;position:relative;display:inline-block;width:100%;color:#0a2b44;}
+
+/* linea roja decorativa debajo del titulo */
+.titulo-seccion:after{content:"";display:block;width:80px;height:4px;background:linear-gradient(90deg,#cc0000,#0099ff);margin:12px auto 0;border-radius:2px;}
+
+/* padding general para las secciones */
+.seccion{padding:70px 0;}
+
+/* tarjeta de perfil con borde gradiente */
+.tarjeta-perfil{background:white;border-radius:30px;padding:40px;box-shadow:0 20px 40px rgba(0,0,0,0.1);margin-bottom:40px;border-left:8px solid #0099ff;border-right:1px solid #eee;transition:0.3s;}
+
+.tarjeta-perfil:hover{transform:translateY(-5px);box-shadow:0 25px 50px rgba(0,0,0,0.15);}
+
+/* subtitulo dentro de las tarjetas */
+.subtitulo{color:#cc0000;font-size:1.8rem;margin-bottom:20px;border-bottom:2px solid #0099ff;display:inline-block;padding-bottom:5px;}
+
+/* lista de habilidades */
+.lista-habilidades{list-style:none;margin-top:20px;}
+
+.lista-habilidades li{background:linear-gradient(95deg,#f0f4f8 0%,white 100%);margin:12px 0;padding:12px 20px;border-radius:12px;border-left:4px solid #cc0000;font-size:1.1rem;transition:0.2s;}
+
+.lista-habilidades li:hover{transform:translateX(8px);border-left-color:#0099ff;background:#e6f3ff;}
+
+/* texto destacado */
+.texto-destacado{color:#0099ff;font-weight:bold;background:#e6f3ff;padding:2px 8px;border-radius:20px;display:inline-block;}
+
+/* grilla para estudiantes */
+.grilla-estudiantes{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:30px;}
+
+/* tarjeta de cada estudiante con efecto vibrante */
+.tarjeta-estudiante{background:linear-gradient(135deg,#ffffff 0%,#f8f9fc 100%);border-radius:20px;padding:18px;width:200px;text-align:center;transition:0.3s;border:2px solid #e0e0e0;box-shadow:0 5px 15px rgba(0,0,0,0.05);}
+
+.tarjeta-estudiante:hover{transform:translateY(-8px) scale(1.02);border-color:#cc0000;box-shadow:0 15px 30px rgba(204,0,0,0.2);}
+
+/* espacio para foto del estudiante */
+.foto-estudiante{width:100px;height:100px;background:linear-gradient(135deg,#0099ff,#0066cc);border-radius:50%;margin:0 auto 12px;overflow:hidden;border:3px solid #cc0000;transition:0.3s;}
+
+.tarjeta-estudiante:hover .foto-estudiante{border-color:#0099ff;transform:scale(1.02);}
+
+.foto-estudiante img{width:100%;height:100%;object-fit:cover;}
+
+/* nombre del estudiante */
+.nombre-estudiante{color:#cc0000;font-size:1.1rem;margin-bottom:5px;font-weight:bold;}
+
+/* grilla para profesores */
+.grilla-profesores{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;margin-top:30px;}
+
+/* tarjeta de cada profesor */
+.tarjeta-profesor{background:linear-gradient(135deg,#ffffff 0%,#f8f9fc 100%);border-radius:20px;padding:25px;width:280px;text-align:center;transition:0.3s;border:2px solid #e0e0e0;}
+
+.tarjeta-profesor:hover{transform:translateY(-8px);border-color:#0099ff;box-shadow:0 15px 30px rgba(0,153,255,0.2);}
+
+/* foto del profesor */
+.foto-profesor{width:120px;height:120px;background:linear-gradient(135deg,#0099ff,#0066cc);border-radius:50%;margin:0 auto 15px;overflow:hidden;border:3px solid #cc0000;transition:0.3s;}
+
+.tarjeta-profesor:hover .foto-profesor{border-color:#0099ff;transform:scale(1.02);}
+
+.foto-profesor img{width:100%;height:100%;object-fit:cover;}
+
+/* nombre del profesor */
+.nombre-profesor{color:#cc0000;font-size:1.4rem;margin-bottom:8px;font-weight:bold;}
+
+/* materias del profesor */
+.materias-profesor{color:#0099ff;font-weight:bold;font-size:0.9rem;margin-bottom:10px;background:#e6f3ff;display:inline-block;padding:5px 15px;border-radius:30px;}
+
+/* tarjeta de celebracion con estilo festivo */
+.tarjeta-celebracion{background:linear-gradient(135deg,#ffffff 0%,#fff8f0 100%);border-radius:25px;padding:30px;text-align:center;transition:0.3s;border:2px solid #e0e0e0;max-width:500px;margin:0 auto;box-shadow:0 10px 25px rgba(0,0,0,0.05);}
+
+.tarjeta-celebracion:hover{transform:translateY(-5px);border-color:#cc0000;box-shadow:0 20px 40px rgba(204,0,0,0.15);}
+
+/* titulo de la celebracion */
+.titulo-celebracion{color:#cc0000;font-size:1.8rem;margin-bottom:15px;font-weight:bold;letter-spacing:2px;}
+
+/* boton volver con efecto */
+.boton-volver{display:inline-block;background:linear-gradient(135deg,#cc0000,#990000);color:white;padding:12px 28px;text-decoration:none;border-radius:50px;font-weight:bold;transition:0.3s;margin-top:30px;box-shadow:0 5px 15px rgba(204,0,0,0.3);}
+
+.boton-volver:hover{background:linear-gradient(135deg,#ff0000,#cc0000);transform:scale(1.05);box-shadow:0 8px 25px rgba(204,0,0,0.4);}
+
+/* cita divertida con fondo rayado */
+.cita-divertida{background:linear-gradient(135deg,#000000 0%,#1a1a1a 100%);color:white;padding:30px;border-radius:30px;text-align:center;margin:40px 0;font-style:italic;font-size:1.3rem;border-left:5px solid #cc0000;border-right:5px solid #0099ff;box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+
+/* pie de pagina */
+.pie-pagina{background:#1a1a1a;color:#cccccc;text-align:center;padding:40px 0;margin-top:40px;border-top:3px solid #cc0000;}
+
+/* parrafos dentro del pie de pagina */
+.pie-pagina p{margin:5px 0;transition:0.3s;}
+
+.pie-pagina p:hover{color:#0099ff;}
+
+/* estilos para pantallas pequeñas de hasta 768px */
+@media (max-width:768px){
+.flex-encabezado{flex-direction:column;text-align:center;gap:15px;}
+.menu{justify-content:center;}
+.tarjeta-perfil{padding:25px;}
+.subtitulo{font-size:1.5rem;}
+.tarjeta-estudiante{width:160px;}
+.tarjeta-profesor{width:90%;}
+.tarjeta-celebracion{width:90%;}
+.titulo-seccion{font-size:1.8rem;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="barra-superior">
+<div class="contenedor">
+<span class="texto-barra">Promocion 2026 - 24 Estudiantes</span>
+<span class="texto-barra">BTPI - Instituto Roberto Micheletti Bain</span>
+</div>
+</div>
+
+<div class="encabezado">
+<div class="contenedor flex-encabezado">
+<div class="logo-carrera">
+<div class="imagen-logo">
+<img src="Fotos de 12/logo.jpg" alt="Logo BTPI">
+</div>
+<div class="texto-instituto">
+<h1>BTPI <span>2026</span></h1>
+<p>Bachillerato Tecnico Profesional en Informatica</p>
+<p>Instituto Roberto Micheletti Bain</p>
+</div>
+</div>
+<nav>
+<ul class="menu">
+<li><a href="index.html" class="enlace-menu">Inicio</a></li>
+<li><a href="perfil.html" class="enlace-menu">Perfil</a></li>
+<li><a href="contacto.html" class="enlace-menu">Contacto</a></li><br>
+<li><a href="divertido.html" class="enlace-menu">Algunas fotos de mejores momentos</a></li>
+<li><a href="Cumpleaños.html" class="enlace-menu">Cumpleaños</a></li>
+</ul>
+</nav>
+</div>
+</div>
+
+<main>
+
+<div class="seccion">
+<div class="contenedor">
+
+<h1 class="titulo-seccion">Quienes Somos</h1>
+
+<div class="tarjeta-perfil">
+<h2 class="subtitulo">La Promocion 2026</h2>
+<p style="font-size:1.2rem; line-height:1.6; margin-bottom:20px;">Somos <span class="texto-destacado">24 estudiantes</span> y <span class="texto-destacado">2 profesores</span> del <span class="texto-destacado">Bachillerato Tecnico Profesional en Informatica (BTPI)</span> del Instituto Roberto Micheletti Bain. La clase mas <span class="texto-destacado">divertida y peleonera</span> de todo el instituto.</p>
+<p style="font-size:1.2rem; line-height:1.6;">Nos la pasamos <span class="texto-destacado">peleando pero sin rencores luego</span> todo el dia, echandonos tierra, pero al final somos como una familia.</p>
+</div>
+
+<div class="cita-divertida">
+<p>En esta clase no hay enemigos, solo contrincantes.</p>
+</div>
+
+<div class="tarjeta-perfil">
+<h2 class="subtitulo">Nuestros Profesores</h2>
+<div class="grilla-profesores">
+
+<div class="tarjeta-profesor">
+<div class="foto-profesor">
+<img src="Fotos de 12/profe karla.jpg" alt="Profesora Karla Andrade">
+</div>
+<h3 class="nombre-profesor">Karla Andrade</h3>
+<div class="materias-profesor">Desarrollo Web | Producciones Digitales | Mantenimiento y Reparacion</div>
+<p class="descripcion-estudiante" style="margin-top:10px;">La que nos pone serios cuando nos pasamos. Nos quiere y lo demuestra. La respetamos y queremos mucho.</p>
+</div>
+
+<div class="tarjeta-profesor">
+<div class="foto-profesor">
+<img src="Fotos de 12/profe kebin.jpg" alt="Profesor Kebin Stanly">
+</div>
+<h3 class="nombre-profesor">Kebin Stanly</h3>
+<div class="materias-profesor">Programacion | Redes | Gestion Empresarial</div>
+<p class="descripcion-estudiante" style="margin-top:10px;">El que nos aguanta las bromas. Se rie pero luego pone tarea. Tiene paciencia de santo.</p>
+</div>
+
+</div>
+</div>
+
+<div class="tarjeta-perfil">
+<h2 class="subtitulo">Celebramos Cumpleaños Cada 3 Meses</h2>
+<div class="tarjeta-celebracion">
+<h3 class="titulo-celebracion">Fiesta Trimestral</h3>
+<p style="font-size:1.2rem; margin-bottom:15px;">Como somos 24, nos juntamos <span class="texto-destacado">cada 3 meses</span> para celebrar todos los cumpleaños del trimestre.</p>
+<p style="font-size:1rem;">Asi nadie se queda sin pastel, la fiesta es mas grande, y aprovechamos para pasar tiempo juntos aunque despues esten peleando porque alguien tomo Coca Cola y el TES lo prohibe.</p>
+</div>
+</div>
+
+<div class="tarjeta-perfil">
+<h2 class="subtitulo">Nuestros 24 Estudiantes</h2>
+<p style="text-align:center; margin-bottom:20px;">En orden alfabetico, como debe ser:</p>
+<div class="grilla-estudiantes">
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/abdi.jpg" alt="Abdi Amaya">
+</div>
+<h3 class="nombre-estudiante">Abdi Amaya</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/alex.jpg" alt="Alex Humberto">
+</div>
+<h3 class="nombre-estudiante">Alex Humberto</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/ale.jpg" alt="Alejandro Calderon">
+</div>
+<h3 class="nombre-estudiante">Alejandro Calderon</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/angel.jpg" alt="Angel Carcamo">
+</div>
+<h3 class="nombre-estudiante">Angel Carcamo</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/ari.jpg" alt="Ariadni Reyes">
+</div>
+<h3 class="nombre-estudiante">Ariatni Reyes</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/bey.jpg" alt="Beyring Bonilla">
+</div>
+<h3 class="nombre-estudiante">Beyring Bonilla</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/daya.jpg" alt="Dayana Erazo">
+</div>
+<h3 class="nombre-estudiante">Dayana Erazo</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/dorian.jpg" alt="Dorian Murillo">
+</div>
+<h3 class="nombre-estudiante">Dorian Murillo</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/ellis.jpg" alt="Ellis Rivera">
+</div>
+<h3 class="nombre-estudiante">Ellis Rivera</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/isis.jpg" alt="Isis Cruz">
+</div>
+<h3 class="nombre-estudiante">Isis Cruz</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/jade.jpg" alt="Jade Gomez">
+</div>
+<h3 class="nombre-estudiante">Jade Gomez</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/jairo.jpg" alt="Jairo Miranda">
+</div>
+<h3 class="nombre-estudiante">Jairo Miranda</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/jeser.jpg" alt="Jeser Castro">
+</div>
+<h3 class="nombre-estudiante">Jeser Castro</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/jesus.jpg" alt="Jesus Martinez">
+</div>
+<h3 class="nombre-estudiante">Jesus Martinez</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/jose.jpg" alt="Jose Reyes">
+</div>
+<h3 class="nombre-estudiante">Jose Reyes</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/joseph.jpg" alt="Joseph Abrego">
+</div>
+<h3 class="nombre-estudiante">Joseph Abrego</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/luis.jpg" alt="Luis Varela">
+</div>
+<h3 class="nombre-estudiante">Luis Varela</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/Marelyn.jpg" alt="Marelyn Bonilla">
+</div>
+<h3 class="nombre-estudiante">Marelyn Bonilla</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/naho.jpg" alt="Nahomi Gomez">
+</div>
+<h3 class="nombre-estudiante">Nahomi Gomez</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/ramon.jpg" alt="Ramon Lopez">
+</div>
+<h3 class="nombre-estudiante">Ramon Lopez</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/rosario.jpg" alt="Rosario Yanez">
+</div>
+<h3 class="nombre-estudiante">Rosario Yanez</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/sashi.jpg" alt="Sashiel Urbina">
+</div>
+<h3 class="nombre-estudiante">Sashiel Urbina</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/steven.jpg" alt="Steven Quiquivij">
+</div>
+<h3 class="nombre-estudiante">Steven Quiquivij</h3>
+</div>
+
+<div class="tarjeta-estudiante">
+<div class="foto-estudiante">
+<img src="Fotos de 12/tommy.jpg" alt="Tommy Amaya">
+</div>
+<h3 class="nombre-estudiante">Tommy Amaya</h3>
+</div>
+
+</div>
+</div>
+
+<div class="tarjeta-perfil">
+<h2 class="subtitulo">Perfil Profesional</h2>
+<p style="font-size:1.2rem; line-height:1.6; margin-bottom:20px;">A pesar de los relajos, cuando hay que trabajar, trabajamos, por ahora somos capaces de:</p>
+<ul class="lista-habilidades">
+<li>Desarrollar sitios web con HTML y CSS.</li>
+<li>Administrar bases de datos con SQL.</li>
+<li>Brindar soporte tecnico y mantenimiento a PCs.</li>
+<li>Usar CorelDraw, Illustrator y Photoshop.</li>
+<li>Organizar celebraciones de cumpleaños cada 3 meses.</li>
+<li>Pelearnos de broma de forma profesional.</li>
+</ul>
+</div>
+
+<div style="text-align:center; margin-top:30px;">
+<a href="index.html" class="boton-volver">Volver al Inicio</a>
+</div>
+
+</div>
+</div>
+
+</main>
+
+<div class="pie-pagina">
+<div class="contenedor">
+<p>2026 BTPI - Instituto Roberto Micheletti Bain</p>
+<p>Bachillerato Tecnico Profesional en Informatica | Promocion 2026</p>
+<p>Programa DesdeElColegio | 24 estudiantes | 2 laboratorios mas taller</p>
+</div>
+</div>
+
+</body>
+</html>

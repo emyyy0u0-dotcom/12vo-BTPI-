@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto | Soporte Tecnico | BTPI 2026</title>
+<style>
+/* reinicia todos los margenes y paddings a cero */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* estilos generales del cuerpo con fondo gradiente oscuro */
+body{font-family:'Segoe UI',Roboto,'Helvetica Neue',sans-serif;background:url('Fotos de 12/fondo.jpg') no-repeat center center fixed;background-size:cover;color:#1a1a1a;position:relative;}
+
+/* contenedor principal que centra el contenido */
+.contenedor{width:90%;max-width:1300px;margin:0 auto;padding:20px 0;}
+
+/* barra superior negra con informacion de contacto */
+.barra-superior{background:#000000;color:white;padding:8px 0;font-size:14px;text-align:center;border-bottom:3px solid #cc0000;}
+
+/* cada elemento de texto dentro de la barra superior */
+.texto-barra{margin:0 15px;transition:0.3s;display:inline-block;}
+
+.texto-barra:hover{color:#0099ff;transform:scale(1.05);}
+
+/* encabezado fijo que se queda arriba al hacer scroll */
+.encabezado{background:white;box-shadow:0 4px 12px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;border-bottom:2px solid #cc0000;}
+
+/* contenedor flexible para el encabezado */
+.flex-encabezado{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+
+/* espacio para el logo de la carrera */
+.logo-carrera{display:flex;align-items:center;gap:15px;}
+
+/* contenedor del logo con borde animado */
+.imagen-logo{width:60px;height:60px;background:linear-gradient(135deg,#0099ff,#0066cc);border-radius:50%;display:inline-block;text-align:center;line-height:60px;font-size:12px;color:white;border:2px solid #cc0000;overflow:hidden;transition:0.3s;}
+
+.imagen-logo:hover{transform:rotate(5deg) scale(1.05);border-color:#0099ff;}
+
+/* imagen dentro del logo */
+.imagen-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+
+/* titulo del instituto */
+.texto-instituto h1{color:#cc0000;font-size:1.8rem;text-shadow:2px 2px 4px rgba(0,0,0,0.1);}
+
+/* parte azul del titulo */
+.texto-instituto h1 span{color:#0099ff;font-weight:normal;}
+
+/* texto secundario del instituto */
+.texto-instituto p{color:#333;font-size:0.85rem;letter-spacing:1px;}
+
+/* menu de navegacion horizontal */
+.menu{list-style:none;display:flex;gap:1.8rem;flex-wrap:wrap;}
+
+/* estilos de cada enlace del menu */
+.enlace-menu{text-decoration:none;color:#000000;font-weight:bold;padding:8px 0;transition:0.3s;border-bottom:3px solid transparent;}
+
+/* efecto hover para los enlaces del menu */
+.enlace-menu:hover{border-bottom-color:#cc0000;color:#cc0000;transform:translateY(-2px);}
+
+/* padding general para las secciones */
+.seccion{padding:70px 0;}
+
+/* titulo de cada seccion con linea gradiente abajo */
+.titulo-seccion{text-align:center;font-size:2.2rem;margin-bottom:40px;position:relative;display:inline-block;width:100%;color:#ffffff;text-shadow:2px 2px 4px rgba(0,0,0,0.5);}
+
+/* linea gradiente decorativa debajo del titulo */
+.titulo-seccion:after{content:"";display:block;width:80px;height:4px;background:linear-gradient(90deg,#cc0000,#0099ff);margin:12px auto 0;border-radius:2px;}
+
+/* tarjeta de contacto con fondo semitransparente */
+.tarjeta-contacto{background:rgba(255,255,255,0.95);border-radius:30px;padding:40px;box-shadow:0 20px 40px rgba(0,0,0,0.2);margin-bottom:40px;border-left:8px solid #cc0000;border-right:1px solid #eee;transition:0.3s;backdrop-filter:blur(5px);}
+
+.tarjeta-contacto:hover{transform:translateY(-5px);box-shadow:0 25px 50px rgba(0,0,0,0.3);}
+
+/* subtitulo dentro de las tarjetas */
+.subtitulo{color:#cc0000;font-size:1.8rem;margin-bottom:20px;border-bottom:2px solid #0099ff;display:inline-block;padding-bottom:5px;}
+
+/* formulario de reparacion */
+.formulario-reparacion{background:#f8f9fc;border-radius:25px;padding:30px;margin-top:20px;border:2px solid #e0e0e0;}
+
+/* grupo de campos del formulario */
+.grupo-campo{margin-bottom:25px;}
+
+/* etiquetas del formulario */
+.grupo-campo label{display:block;font-weight:bold;color:#cc0000;margin-bottom:8px;font-size:1rem;}
+
+/* campos de texto y telefono */
+.grupo-campo input[type="text"],.grupo-campo input[type="tel"]{width:100%;padding:14px 18px;border:2px solid #ddd;border-radius:12px;font-size:1rem;transition:0.3s;background:white;}
+
+.grupo-campo input[type="text"]:focus,.grupo-campo input[type="tel"]:focus{outline:none;border-color:#0099ff;box-shadow:0 0 8px rgba(0,153,255,0.3);}
+
+/* select desplegable */
+.grupo-campo select{width:100%;padding:14px 18px;border:2px solid #ddd;border-radius:12px;font-size:1rem;background:white;cursor:pointer;transition:0.3s;}
+
+.grupo-campo select:focus{outline:none;border-color:#0099ff;box-shadow:0 0 8px rgba(0,153,255,0.3);}
+
+/* textarea para el problema */
+.grupo-campo textarea{width:100%;padding:14px 18px;border:2px solid #ddd;border-radius:12px;font-size:1rem;font-family:inherit;resize:vertical;min-height:120px;transition:0.3s;}
+
+.grupo-campo textarea:focus{outline:none;border-color:#0099ff;box-shadow:0 0 8px rgba(0,153,255,0.3);}
+
+/* boton de enviar */
+.boton-enviar{display:inline-block;background:linear-gradient(135deg,#cc0000,#990000);color:white;padding:14px 35px;text-decoration:none;border-radius:50px;font-weight:bold;transition:0.3s;border:none;cursor:pointer;font-size:1.1rem;box-shadow:0 5px 15px rgba(204,0,0,0.3);width:100%;max-width:250px;}
+
+.boton-enviar:hover{background:linear-gradient(135deg,#ff0000,#cc0000);transform:scale(1.02);box-shadow:0 8px 25px rgba(204,0,0,0.4);cursor:pointer;}
+
+/* horario de atencion */
+.horario-atencion{background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%);color:white;border-radius:20px;padding:25px;text-align:center;margin-top:30px;border-left:5px solid #cc0000;border-right:5px solid #0099ff;}
+
+.horario-atencion h3{color:#0099ff;margin-bottom:15px;}
+
+.horario-atencion p{margin:8px 0;}
+
+/* boton volver */
+.boton-volver{display:inline-block;background:linear-gradient(135deg,#cc0000,#990000);color:white;padding:12px 28px;text-decoration:none;border-radius:50px;font-weight:bold;transition:0.3s;margin-top:30px;box-shadow:0 5px 15px rgba(204,0,0,0.3);}
+
+.boton-volver:hover{background:linear-gradient(135deg,#ff0000,#cc0000);transform:scale(1.05);box-shadow:0 8px 25px rgba(204,0,0,0.4);}
+
+/* pie de pagina */
+.pie-pagina{background:#1a1a1a;color:#cccccc;text-align:center;padding:40px 0;margin-top:40px;border-top:3px solid #cc0000;}
+
+/* parrafos dentro del pie de pagina */
+.pie-pagina p{margin:5px 0;transition:0.3s;}
+
+.pie-pagina p:hover{color:#0099ff;}
+
+/* estilos para pantallas pequeñas de hasta 768px */
+@media (max-width:768px){
+.flex-encabezado{flex-direction:column;text-align:center;gap:15px;}
+.menu{justify-content:center;}
+.titulo-seccion{font-size:1.8rem;}
+.tarjeta-contacto{padding:25px;}
+.subtitulo{font-size:1.5rem;}
+.boton-enviar{width:100%;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="barra-superior">
+<div class="contenedor">
+<span class="texto-barra">BTPI 2026</span>
+<span class="texto-barra">Soporte Tecnico</span>
+<span class="texto-barra">Promocion 2026 - 24 Estudiantes</span>
+<span class="texto-barra">Instituto Roberto Micheletti Bain</span>
+</div>
+</div>
+
+<div class="encabezado">
+<div class="contenedor flex-encabezado">
+<div class="logo-carrera">
+<div class="imagen-logo">
+<img src="Fotos de 12/Logo.jpg" alt="Logo BTPI">
+</div>
+<div class="texto-instituto">
+<h1>BTPI <span>2026</span></h1>
+<p>Bachillerato Técnico Profesional en Informática</p>
+<p>Instituto Roberto Micheletti Bain</p>
+</div>
+</div>
+<nav>
+<ul class="menu">
+<li><a href="index.html" class="enlace-menu">Inicio</a></li>
+<li><a href="perfil.html" class="enlace-menu">Perfil</a></li>
+<li><a href="contacto.html" class="enlace-menu">Contacto</a></li><br>
+<li><a href="divertido.html" class="enlace-menu">Algunas fotos de mejores momentos</a></li>
+<li><a href="Cumpleaños.html" class="enlace-menu">Cumpleaños</a></li>
+</ul>
+</nav>
+</div>
+</div>
+
+<main>
+
+<div class="seccion">
+<div class="contenedor">
+
+<h1 class="titulo-seccion">Solicitar Reparación</h1>
+
+<div class="tarjeta-contacto">
+<h2 class="subtitulo">Formulario de Soporte Técnico</h2>
+<p style="font-size:1.1rem; margin-bottom:30px; text-align:center;">Llena el formulario y un tecnico se comunicara contigo</p>
+
+<div class="formulario-reparacion">
+<form action="#" method="post">
+<div class="grupo-campo">
+<label>Nombre Completo</label>
+<input type="text" placeholder="Nombre Completo" required>
+</div>
+
+<div class="grupo-campo">
+<label>Telefono de Contacto</label>
+<input type="tel" placeholder="Telefono" required>
+</div>
+
+<div class="grupo-campo">
+<label>Tipo de Equipo</label>
+<select required>
+<option value="">Seleccione el tipo de equipo</option>
+<option value="pc-escritorio">PC de Escritorio</option>
+<option value="portatil">Portatil / Laptop</option>
+<option value="impresora">Impresora</option>
+</select>
+</div>
+
+<div class="grupo-campo">
+<label>Describe el problema</label>
+<textarea placeholder="Describa el problema del equipo"></textarea>
+</div>
+
+<div style="text-align:center;">
+<button type="submit" class="boton-enviar">Enviar Solicitud</button>
+</div>
+</form>
+</div>
+
+<div class="horario-atencion">
+<h3>Servicios que Ofrecemos</h3>
+<p>Reparacion de PC de Escritorio</p>
+<p>Reparacion de Portatiles / Laptops</p>
+<p>Mantenimiento y Reparacion de Impresoras</p>
+<p>Instalacion de Software y Windows</p>
+<p>Configuracion de Redes y Internet</p>
+<p>Limpieza Interna y Mantenimiento Preventivo</p>
+</div>
+
+</div>
+
+<div style="text-align:center; margin-top:30px;">
+<a href="index.html" class="boton-volver">Volver al Inicio</a>
+</div>
+
+</div>
+</div>
+
+</main>
+
+<div class="pie-pagina">
+<div class="contenedor">
+<p>2026 BTPI - Instituto Roberto Micheletti Bain</p>
+<p>Bachillerato Tecnico Profesional en Informatica | Promocion 2026</p>
+<p>Soporte Tecnico y Reparaciones | 24 estudiantes tecnicos</p>
+</div>
+</div>
+
+</body>
+</html>
