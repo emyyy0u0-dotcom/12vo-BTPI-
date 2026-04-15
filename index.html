@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTPI 2026 | Instituto Roberto Micheletti Bain</title>
+<style>
+
+/* reinicia todos los margenes y paddings a cero */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* estilos generales del cuerpo de la pagina con gradiente de fondo */
+body{font-family:'Segoe UI',Roboto,'Helvetica Neue',sans-serif;background:linear-gradient(135deg,#f0f4f8 0%,#e0e8f0 100%);color:#1a1a1a;}
+
+/* contenedor principal que centra el contenido */
+.contenedor{width:90%;max-width:1300px;margin:0 auto;padding:20px 0;}
+
+/* barra superior negra con informacion de contacto */
+.barra-superior{background:#000000;color:white;padding:8px 0;font-size:14px;text-align:center;border-bottom:3px solid #cc0000;}
+
+/* cada elemento de texto dentro de la barra superior */
+.texto-barra{margin:0 15px;transition:0.3s;display:inline-block;}
+
+.texto-barra:hover{color:#0099ff;transform:scale(1.05);}
+
+/* encabezado fijo que se queda arriba al hacer scroll */
+.encabezado{background:white;box-shadow:0 4px 12px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;border-bottom:2px solid #cc0000;}
+
+/* contenedor flexible para el encabezado */
+.flex-encabezado{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+
+/* espacio para el logo de la carrera */
+.logo-carrera{display:flex;align-items:center;gap:15px;}
+
+/* contenedor del logo con borde animado */
+.imagen-logo{width:60px;height:60px;background:linear-gradient(135deg,#0099ff,#0066cc);border-radius:50%;display:inline-block;text-align:center;line-height:60px;font-size:12px;color:white;border:2px solid #cc0000;overflow:hidden;transition:0.3s;}
+
+.imagen-logo:hover{transform:rotate(5deg) scale(1.05);border-color:#0099ff;}
+
+/* imagen dentro del logo */
+.imagen-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+
+/* titulo del instituto */
+.texto-instituto h1{color:#cc0000;font-size:1.8rem;text-shadow:2px 2px 4px rgba(0,0,0,0.1);}
+
+/* parte azul del titulo */
+.texto-instituto h1 span{color:#0099ff;font-weight:normal;}
+
+/* texto secundario del instituto */
+.texto-instituto p{color:#333;font-size:0.85rem;letter-spacing:1px;}
+
+/* menu de navegacion horizontal */
+.menu{list-style:none;display:flex;gap:1.8rem;flex-wrap:wrap;}
+
+/* estilos de cada enlace del menu */
+.enlace-menu{text-decoration:none;color:#000000;font-weight:bold;padding:8px 0;transition:0.3s;border-bottom:3px solid transparent;}
+
+/* efecto hover para los enlaces del menu */
+.enlace-menu:hover{border-bottom-color:#cc0000;color:#cc0000;transform:translateY(-2px);}
+
+/* seccion principal hero con degradado azul y linea roja */
+.hero{background:linear-gradient(135deg,#0099ff,#0066cc);color:white;text-align:center;padding:90px 0;position:relative;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+
+/* linea roja decorativa en la parte inferior del hero */
+.hero::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:8px;background:#cc0000;}
+
+/* titulo grande del hero */
+.hero h2{font-size:2.8rem;margin-bottom:1rem;text-shadow:2px 2px 4px rgba(0,0,0,0.2);}
+
+/* parrafo del hero */
+.hero p{font-size:1.3rem;max-width:700px;margin:0 auto 2rem;}
+
+/* botones redondeados estilo principal con gradiente */
+.boton{display:inline-block;background:linear-gradient(135deg,#cc0000,#990000);color:white;padding:14px 32px;text-decoration:none;border-radius:50px;font-weight:bold;transition:0.3s;margin:5px;box-shadow:0 5px 15px rgba(204,0,0,0.3);border:none;cursor:pointer;}
+
+/* efecto hover para botones */
+.boton:hover{background:linear-gradient(135deg,#ff0000,#cc0000);transform:scale(1.05);box-shadow:0 8px 25px rgba(204,0,0,0.4);}
+
+/* variante de boton blanco con borde rojo */
+.boton-blanco{background:white;color:#cc0000;border:2px solid #cc0000;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+
+/* efecto hover para boton blanco */
+.boton-blanco:hover{background:#cc0000;color:white;border-color:#cc0000;}
+
+/* seccion de datos rapidos con fondo negro */
+.datos-rapidos{background:#000000;color:white;padding:25px 0;text-align:center;border-top:2px solid #cc0000;border-bottom:2px solid #cc0000;}
+
+/* grilla flexible para los datos */
+.grilla-datos{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;}
+
+/* cada item de dato */
+.dato-item{font-size:1.3rem;transition:0.3s;}
+
+.dato-item:hover{transform:scale(1.05);}
+
+/* numeros grandes en color azul */
+.numero-grande{color:#0099ff;font-size:1.8rem;font-weight:bold;}
+
+/* padding general para las secciones */
+.seccion{padding:70px 0;}
+
+/* titulo de cada seccion con linea gradiente abajo */
+.titulo-seccion{text-align:center;font-size:2.2rem;margin-bottom:40px;position:relative;display:inline-block;width:100%;color:#0a2b44;}
+
+/* linea gradiente decorativa debajo del titulo */
+.titulo-seccion:after{content:"";display:block;width:80px;height:4px;background:linear-gradient(90deg,#cc0000,#0099ff);margin:12px auto 0;border-radius:2px;}
+
+/* grilla de tarjetas flexible */
+.grilla-tarjetas{display:flex;flex-wrap:wrap;gap:25px;justify-content:center;}
+
+/* cada tarjeta individual con efecto */
+.tarjeta{background:linear-gradient(135deg,#ffffff 0%,#f8f9fc 100%);border-radius:20px;padding:25px;width:300px;box-shadow:0 10px 25px rgba(0,0,0,0.08);transition:0.3s;border-left:6px solid #0099ff;border-right:1px solid #eee;}
+
+/* efecto hover que levanta la tarjeta */
+.tarjeta:hover{transform:translateY(-10px);box-shadow:0 20px 35px rgba(0,0,0,0.15);}
+
+/* titulo dentro de la tarjeta */
+.tarjeta h3{color:#cc0000;margin-bottom:12px;font-size:1.5rem;}
+
+/* texto dentro de la tarjeta */
+.tarjeta p{color:#333;line-height:1.4;}
+
+/* espacio para imagen dentro de cada tarjeta */
+.imagen-tarjeta{width:100%;height:160px;background:#e0e0e0;display:block;margin-bottom:15px;border-radius:12px;text-align:center;line-height:160px;color:#666;font-size:14px;border:1px solid #ccc;overflow:hidden;}
+
+/* imagen dentro del espacio de imagen */
+.imagen-tarjeta img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
+
+/* grilla de etiquetas de software */
+.grilla-software{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:30px;}
+
+/* cada etiqueta de software */
+.etiqueta-software{background:#e6f3ff;padding:12px 20px;border-radius:40px;font-weight:bold;color:#0066cc;border:1px solid #0099ff;transition:0.3s;}
+
+.etiqueta-software:hover{transform:scale(1.05);background:#0099ff;color:white;border-color:#cc0000;}
+
+/* caja para laboratorios */
+.caja-labs{background:linear-gradient(135deg,#f8f9fc 0%,#ffffff 100%);border-radius:30px;padding:40px;text-align:center;margin-top:30px;border:2px solid #e0e0e0;transition:0.3s;}
+
+.caja-labs:hover{transform:translateY(-5px);border-color:#0099ff;box-shadow:0 15px 30px rgba(0,0,0,0.1);}
+
+/* contenedor de items de laboratorio */
+.items-labs{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:20px;}
+
+/* cada etiqueta de laboratorio */
+.etiqueta-lab{background:#cc0000;color:white;padding:15px 30px;border-radius:60px;font-weight:bold;transition:0.3s;}
+
+.etiqueta-lab:hover{transform:scale(1.05);background:#0099ff;}
+
+/* caja para el programa de television */
+.caja-tv{background:linear-gradient(135deg,#000000 0%,#1a1a1a 100%);color:white;padding:40px;border-radius:30px;text-align:center;margin:40px 0;border-left:5px solid #cc0000;border-right:5px solid #0099ff;box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+
+/* titulo dentro de la caja de tv */
+.caja-tv h3{color:#0099ff;font-size:1.8rem;}
+
+/* panel de enlaces a otras paginas */
+.panel-enlaces{background:#eef2f7;padding:50px 0;text-align:center;border-top:2px solid #cc0000;border-bottom:2px solid #cc0000;}
+
+/* grilla de botones del panel */
+.grilla-botones{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:30px;}
+
+/* pie de pagina */
+.pie-pagina{background:#1a1a1a;color:#cccccc;text-align:center;padding:40px 0;margin-top:40px;border-top:3px solid #cc0000;}
+
+/* parrafos dentro del pie de pagina */
+.pie-pagina p{margin:5px 0;transition:0.3s;}
+
+.pie-pagina p:hover{color:#0099ff;}
+
+/* estilos para pantallas pequeñas de hasta 768px */
+@media (max-width:768px){
+.flex-encabezado{flex-direction:column;text-align:center;gap:15px;}
+.menu{justify-content:center;}
+.hero h2{font-size:1.8rem;}
+.tarjeta{width:90%;}
+.imagen-logo{width:50px;height:50px;line-height:50px;}
+.titulo-seccion{font-size:1.8rem;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="barra-superior">
+<div class="contenedor">
+<span class="texto-barra">Promocion 2026 - 24 Estudiantes</span>
+<span class="texto-barra">BTPI - Instituto Roberto Micheletti Bain</span>
+</div>
+</div>
+
+<div class="encabezado">
+<div class="contenedor flex-encabezado">
+<div class="logo-carrera">
+<div class="imagen-logo">
+<img src="Fotos de 12/logo.jpg" alt="Logo BTPI">
+</div>
+<div class="texto-instituto">
+<h1>BTPI <span>2026</span></h1>
+<p>Bachillerato Técnico Profesional en Informática</p>
+<p>Instituto Roberto Micheletti Bain</p>
+</div>
+</div>
+<nav>
+<ul class="menu">
+<li><a href="index.html" class="enlace-menu">Inicio</a></li>
+<li><a href="perfil.html" class="enlace-menu">Perfil</a></li>
+<li><a href="contacto.html" class="enlace-menu">Contacto</a></li>
+<li><a href="divertido.html" class="enlace-menu">Algunas fotos de mejores momentos</a></li><br>
+<li><a href="Cumpleaños.html" class="enlace-menu">Cumpleaños</a></li>
+</ul>
+</nav>
+</div>
+</div>
+
+<main>
+
+<div class="hero">
+<div class="contenedor">
+<h2><span>Futuros Técnicos en Informática</span></h2>
+<p>24 estudiantes, 2 profesores, 2 laboratorios mas taller | Programa DesdeElColegio</p>
+<a href="#clases" class="boton">Ver materias</a>
+<a href="#mantenimiento" class="boton boton-blanco">Software y Mantenimiento</a>
+</div>
+</div>
+
+<div class="datos-rapidos">
+<div class="contenedor">
+<div class="grilla-datos">
+<div class="dato-item"><span class="numero-grande">24</span><br>Estudiantes</div>
+<div class="dato-item"><span class="numero-grande">2</span><br>Profesores</div>
+<div class="dato-item"><span class="numero-grande">6</span><br>
+  Materias Técnicas</div>
+<div class="dato-item"><span class="numero-grande">3</span><br>Espacios: 2 Labs mas Taller</div>
+</div>
+</div>
+</div>
+
+<div class="seccion" id="clases">
+<div class="contenedor">
+<h2 class="titulo-seccion">Nuestras 6 Clases Tecnicas</h2>
+<div class="grilla-tarjetas">
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/desarrollo web.jpg" alt="Desarrollo Web">
+</div>
+<h3>Desarrollo Web</h3>
+<p>HTML, CSS, JavaScript - Creamos sitios web modernos y responsive.</p>
+</div>
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/gestion empresarial.jpg" alt="Gestion Empresarial">
+</div>
+<h3>Gestion Empresarial</h3>
+<p>Que necesita una empresa para implementar un sistema informatico.</p>
+</div>
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/SQL.jpg" alt="Base de Datos">
+</div>
+<h3>Base de Datos y Programacion</h3>
+<p>SQL, consultas, modelado de datos y logica de programacion.</p>
+</div>
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/producciones digitales.jpg" alt="Producciones Digitales">
+</div>
+<h3>Producciones Digitales</h3>
+<p>CorelDraw, Illustrator, Photosho    .</p>
+</div>
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/redes.jpg" alt="Redes">
+</div>
+<h3>Redes</h3>
+<p>Instalacion de redes, cableado estructurado, configuracion de routers.</p>
+</div>
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/mantenimiento.jpg" alt="Mantenimiento">
+</div>
+<h3>Mantenimiento y Reparacion</h3>
+<p>PC de escritorio y portatiles, limpieza, diagnostico de fallos.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="seccion" id="mantenimiento">
+<div class="contenedor">
+<h2 class="titulo-seccion">Mantenimiento de PC y Software</h2>
+<div class="grilla-tarjetas">
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/reparacion PC.jpg" alt="PC Escritorio">
+</div>
+<h3>PC de Escritorio</h3>
+<p>Limpieza interna, cambio de pasta termica, diagnostico de fallos, actualizacion de componentes.</p>
+</div>
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/reparacion portatil.jpg" alt="Portatiles">
+</div>
+<h3>Portatiles y Laptops</h3>
+<p>Mantenimiento preventivo, limpieza de ventiladores, cambio de teclado y bateria.</p>
+</div>
+</div>
+<h3 style="text-align:center; color:#cc0000; margin-top:40px;">Software que instalamos y configuramos</h3>
+<div class="grilla-software">
+<span class="etiqueta-software">VLC Media Player</span>
+<span class="etiqueta-software">WinRAR</span>
+<span class="etiqueta-software">Microsoft Office</span>
+<span class="etiqueta-software">Avast Antivirus</span>
+<span class="etiqueta-software">Pascal IDE</span>
+<span class="etiqueta-software">Activacion de Windows</span>
+<span class="etiqueta-software">CorelDraw</span>
+<span class="etiqueta-software">Adobe Illustrator</span>
+<span class="etiqueta-software">Adobe Photoshop</span>
+<span class="etiqueta-software">Drivers y actualizaciones</span>
+</div>
+<div style="text-align:center; margin-top:40px;">
+<p style="background:#0099ff; color:white; display:inline-block; padding:10px 25px; border-radius:40px;">Ademas manejamos: SQL | HTML | CSS | Programacion basica</p>
+</div>
+</div>
+</div>
+
+<div class="seccion">
+<div class="contenedor">
+<h2 class="titulo-seccion">Que necesita una empresa para un sistema</h2>
+<div class="caja-labs">
+<p style="font-size:1.2rem; margin-bottom:20px;">En Gestion Empresarial aprendemos los requisitos clave:</p>
+<div class="items-labs">
+<span class="etiqueta-lab">Analisis de requerimientos</span>
+<span class="etiqueta-lab">Base de datos SQL</span>
+<span class="etiqueta-lab">Seguridad y permisos</span>
+<span class="etiqueta-lab">Reportes y dashboards</span>
+<span class="etiqueta-lab">Escalabilidad</span>
+<span class="etiqueta-lab">Soporte tecnico</span>
+</div>
+</div>
+</div>
+</div>
+<div class="caja-tv">
+<div class="contenedor">
+<h3>Programa de Televición</h3>
+<h2 style="color:white;">DesdeElColegio</h2>
+<p style="font-size:1.2rem;">Somos parte del programa donde mostramos tecnologia, proyectos, risas y vida estudiantil.</p>
+<div class="imagen-tarjeta" style="max-width:400px; margin:20px auto;">
+<img src="Fotos de 12/DesdeelColegio.jpg" alt="DesdeElColegio TV">
+</div>
+</div>
+</div>
+
+<div class="seccion">
+<div class="contenedor">
+<h2 class="titulo-seccion">Nuestros Espacios</h2>
+<div class="grilla-tarjetas">
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/laboratorio1.jpg" alt="Laboratorio 1">
+</div>
+<h3>Laboratorio 1</h3>
+<p>20 PCs con Windows, redes, software de programacion y diseño.</p>
+</div>
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/laboratorio2.jpg" alt="Laboratorio 2">
+</div>
+<h3>Laboratorio 2</h3>
+<p>Equipos para practicas de redes, servidores y mantenimiento avanzado.</p>
+</div>
+<div class="tarjeta">
+<div class="imagen-tarjeta">
+<img src="Fotos de 12/taller.jpg" alt="Taller Tecnico">
+</div>
+<h3>Taller Tecnico</h3>
+<p>Herramientas, bancos de trabajo, repuestos para reparacion de hardware.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="panel-enlaces">
+<div class="contenedor">
+<h2 class="titulo-seccion">Explora nuestro sitio completo</h2>
+<p>Cada seccion tiene su propia pagina con mas detalles</p>
+<div class="grilla-botones">
+<a href="perfil.html" class="boton">Perfil del Egresado</a>
+<a href="contacto.html" class="boton boton-blanco">Contacto</a>
+</div>
+</div>
+</div>
+
+</main>
+
+<div class="pie-pagina">
+<div class="contenedor">
+<p>2026 BTPI - Instituto Roberto Micheletti Bain</p>
+<p>Bachillerato Tecnico Profesional en Informatica | Promocion 2026</p>
+<p>Programa DesdeElColegio | 24 estudiantes | 2 laboratorios mas taller</p>
+</div>
+</div>
+
+</body>
+</html>
